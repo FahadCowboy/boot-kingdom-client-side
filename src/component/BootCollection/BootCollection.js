@@ -20,14 +20,12 @@ const BootCollection = () => {
             <div className="row g-4">
                {
                   boots.map(boot => (
-                     <div className="col col-12 col-md-6 col-lg-6">
+                     <div key={boot._id} className="col col-12 col-md-6 col-lg-6">
                         <div className="card h-100">
                            <img src={boot.image} className="card-img-top d-block mx-auto w-75" alt="..."/>
                            <div className="card-body">
                               <h4 className="card-title text-dark">{boot.name}</h4>
-                              {
-                                 boot.description.map(desc => <p>{desc}</p>)
-                              }
+                              <p>{boot.description}</p>
                               <h5 className="card-text text-secondary">{boot.price} <span>৳</span></h5>
                            </div>
                            <div className="card-footer border-0 bg-transparent">

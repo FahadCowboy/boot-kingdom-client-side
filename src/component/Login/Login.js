@@ -10,7 +10,7 @@ const Login = () => {
    const location = useLocation()
    const history = useHistory()
 
-   const {login} = useAuth()
+   const {login, loginWithGoogle} = useAuth()
 
    const handleEmail = e => {
       const value = e.target.value
@@ -22,11 +22,14 @@ const Login = () => {
       setPassword(value)
    }
 
-
    const handleSubmit = e => {
       e.preventDefault()
       login(email, password, location, history)
       e.target.reset()
+   }
+
+   const handleGoogleLogin = () => {
+      loginWithGoogle(location, history)
    }
 
 
@@ -43,9 +46,13 @@ const Login = () => {
                   <label for="exampleInputPassword1" class="form-label">Password</label>
                   <input onChange={handlePassword} type="password" class="form-control" id="exampleInputPassword1" placeholder="Password"/>
                </div>
-               <div className="d-flex justify-content-between">
-                  <button type="submit" class="btn btn-primary">Submit</button>
+               <div className="d-flex flex-column">
+                  <button type="submit" class="btn btn-primary mb-2">Submit</button>
                   <NavLink to="/signup">New user?</NavLink>
+               </div>
+               <hr />
+               <div className="d-flex flex-column">
+                  <button onClick={handleGoogleLogin} type="submit" class="btn btn-warning">Google</button>
                </div>
             </form>
          </div>

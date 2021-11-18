@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react"
 import initializeFirebase from "../component/Login/Firebase/firebase.init"
-import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword, onAuthStateChanged, signOut  } from "firebase/auth"
+import { getAuth, GoogleAuthProvider, signInWithEmailAndPassword, createUserWithEmailAndPassword, onAuthStateChanged, signInWithPopup, signOut, updateProfile   } from "firebase/auth"
 
 
 initializeFirebase()
@@ -11,15 +11,28 @@ const useFirebase = () => {
    const [errorMessage, setErrorMessage] = useState()
 
    const auth = getAuth()
+   const googleProvider = new GoogleAuthProvider()
 
    // Register an user with email and password
-   const registerUser = (email, password) => {
+   const registerUser = (name, email, password, history) => {
       setLoader(true)
       createUserWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
-         const user = userCredential.user;
+         // const user = userCredential.user;
          setErrorMessage('')
-         setUser(user)
+         const newUser = {
+            email,
+            displayName: name
+         }
+         setUser(newUser)
+         updateProfile(auth.currentUser, {
+            displayName: name
+          }).then(() => {
+
+          }).catch((error) => {
+            console.log(error)
+          });
+         history.replace('/')
       })
       .catch((error) => {
          // const errorCode = error.code;
@@ -46,6 +59,22 @@ const useFirebase = () => {
          setErrorMessage(errorMessage)
       })
       .finally(() => setLoader(false))
+   }
+
+   // Login with Google
+   const loginWithGoogle = (location, history) => {
+      setLoader(true)
+      signInWithPopup(auth, googleProvider)
+      .then((result) => {
+         const user = result.user;
+         const destination = location?.state?.from || '/'
+         history.replace(destination)
+         setUser(user)
+       }).catch((error) => {
+         const errorMessage = error.message;
+         setErrorMessage(errorMessage)
+       })
+       .finally(() => setLoader(false))
    }
 
    // Auth observer
@@ -79,6 +108,7 @@ const useFirebase = () => {
       loader,
       registerUser,
       login,
+      loginWithGoogle,
       logout
    }
 }
