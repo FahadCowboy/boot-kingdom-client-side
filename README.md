@@ -1,6 +1,6 @@
 # Getting Started with Boot Kingdom
 
-This project was bootstrapped with [Create React App](https://boot-kingdom.web.app/).
+You can visit our site at [Boot Kinkdom](https://boot-kingdom.web.app/).
 
 ## Available Scripts
 
