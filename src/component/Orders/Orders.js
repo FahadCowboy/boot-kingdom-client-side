@@ -43,7 +43,6 @@ const Orders = () => {
    
    return (
       <>
-      <Header></Header>
       <div className="container d-flex flex-column align-items-center my-5 py-5">
          <h1 className="orders-headding pb-4 text-center theme-text">Orders you have placed</h1>
          {

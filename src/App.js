@@ -13,6 +13,7 @@ import AuthProvider from './context/AuthProvider/AuthProvider';
 import Dashboard from './Dashboard/Dashboard';
 import Feedback from './Feedback/Feedback';
 import Reviews from './component/Home/Reviews/Reviews';
+import ManageProducts from './component/ManageProducts/ManageProducts';
 
 function App() {
   return (
@@ -38,20 +39,8 @@ function App() {
             <PrivateRoute exact path="/place-order/:id">
               <PlaceOrder></PlaceOrder>
             </PrivateRoute>
-            <PrivateRoute exact path="/orders">
-              <Orders></Orders>
-            </PrivateRoute>
-            <PrivateRoute exact path="/manage-orders">
-              <ManageOrders></ManageOrders>
-            </PrivateRoute>
-            <PrivateRoute exact path="/add-product">
-              <AddProduct></AddProduct>
-            </PrivateRoute>
-            <PrivateRoute exact path="/dashboard">
+            <PrivateRoute path="/dashboard">
               <Dashboard></Dashboard>
-            </PrivateRoute>
-            <PrivateRoute exact path="/feedback">
-              <Feedback></Feedback>
             </PrivateRoute>
           </Switch>
         </Router>

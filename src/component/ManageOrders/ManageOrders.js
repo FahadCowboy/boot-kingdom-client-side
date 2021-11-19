@@ -63,10 +63,6 @@ const ManageOrders = () => {
 
    return (
       <>
-      {
-         <Header></Header>
-      }
-
       { orders.length === 0 ? 
          <div className="sweet-loading loader-parent">
             {
@@ -104,7 +100,7 @@ const ManageOrders = () => {
                               <button onClick={() => handleOrderConfirm(order._id)} type="button" className="btn btn-outline-info btn-sm fw-bold me-2">Confirm</button>
 
                            }
-                           <button onClick={() => handleOrderDelete(order._id)} type="button" className="btn btn-outline-warning btn-sm fw-bold">Cancel</button>
+                           <button onClick={() => handleOrderDelete(order._id)} type="button" className="btn btn-outline-danger btn-sm fw-bold">Cancel</button>
                         </div>
                      </div>
                   </div>

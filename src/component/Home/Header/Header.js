@@ -1,11 +1,13 @@
 import React from 'react';
 import { Link, NavLink } from 'react-router-dom';
+import { useEffect } from 'react/cjs/react.development';
 import useAuth from '../../../hooks/useAuth';
 
 const Header = () => {
    const {user, logout, loader} = useAuth()
+
    return (
-      <header className="py-2 bg-dark text-white">
+      <header className=" bg-dark text-white">
          <nav className="navbar navbar-expand-md navbar-dark bg-dark">
             <div className="container">
                <Link to="/" className="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none">
@@ -16,18 +18,20 @@ const Header = () => {
                </button>
                <div className="collapse navbar-collapse flex-grow-0" id="navbarScroll">
                   <div className="text-end d-md-flex">
-                     <div className="d-lg-flex w-100 1-md-100">
+                     <div className="d-lg-flex w-100 1-md-100 align-items-center">
                         <Link to="/boot-collection" className="px-2 text-decoration-none text-white me-3 nav-link">Boot Collection</Link>
-                        <Link to="/orders" className="px-2 text-decoration-none text-white me-3 nav-link">Orders</Link>
-                        <Link to="/manage-orders" className="px-2 text-decoration-none text-white me-3 nav-link">Manage Orders</Link>
-                        <Link to="/add-product" className="px-2 text-decoration-none text-white me-3 nav-link">Add Product</Link>
-                        <Link to="/feedback" className="px-2 text-decoration-none text-white me-3 nav-link">Feedback</Link>
-                        {/* <Link to="/feedback" className="px-2 text-decoration-none text-white me-3 nav-link">Feedback</Link> */}
                      </div>
                      { user?
-                        <div>
-                           <NavLink to="/dashboard">Dashboard</NavLink>
-                           <button onClick={logout} className="btn btn-outline-info btn-sm">Log Out</button>
+                        <div className="d-flex align-items-center justify-content-between" style={{minWidth: "368px"}}>
+                           <div className="d-flex flex-column align-items-start p-2 border rounded border-info">
+                              <p className="mb-1 text-info">{user.displayName}</p>
+                              <small className="mb-0 text-small text-warning">{user.email}</small>
+                           </div>
+                           <div className="d-flex flex-sm-column flex-md-row align-items-center mvb-2">
+                              <button onClick={logout} className="btn btn-outline-info me-2 m1">Log Out</button>
+                              <button className="btn btn-outline-warning m-1"><NavLink to="/dashboard" className="text-decoration-none text-warning">Dashboard</NavLink></button>
+                           </div>
+
                         </div>
 
                      :

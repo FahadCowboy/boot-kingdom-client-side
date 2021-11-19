@@ -8,7 +8,12 @@ const SpecialBoots = () => {
       .then(data => {
          console.log(data)
          const exclusive = data.filter(boot => boot.collection === "exclusive")
-         setBoots(exclusive)
+         let exclusiveSix = []
+         for (let i = 0; i < 6; i++) {
+            exclusiveSix.push(exclusive[i]) 
+         }
+
+         setBoots(exclusiveSix)
       })
    }, [])
    console.log(boots)
@@ -19,7 +24,7 @@ const SpecialBoots = () => {
             {
                boots.map(boot => (
 
-                  <div key={boot._id} className="col col-12 col-md-6 col-lg-6">
+                  <div key={boot._id} className="col col-12 col-md-6 col-lg-4">
                      <div className="card h-100">
                         <img src={boot.image} className="card-img-top d-block mx-auto w-75" alt="..."/>
                         <div className="card-body">

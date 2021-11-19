@@ -29,7 +29,7 @@ const styles = {
 
 const Feedback = () => {
    const {user} = useAuth()
-   const [comment, setComment] = useState()
+   const [comment, setComment] = useState('')
    const [currentValue, setCurrentValue] = useState(0);
    const [hoverValue, setHoverValue] = useState(null);
    const stars = Array(5).fill(0)
@@ -57,8 +57,8 @@ const Feedback = () => {
       const feedback = {
          name: user.displayName,
          email: user.email,
-         ratting: currentValue,
-         comment
+         comment,
+         ratting: currentValue
       }
       console.log(feedback)
       fetch('http://localhost:4000/feedbacks',{
@@ -76,7 +76,7 @@ const Feedback = () => {
    }
 
    return (
-      <div className="container d-flex justify-content-center align-items-center" style={{height: "90vh"}}>
+      <div className="container d-flex justify-content-center align-items-center">
          <form onSubmit={handleFeedback} style={styles.container}>
             <h2> Share your experience </h2>
             <div className="mt-3" style={styles.stars}>
@@ -99,7 +99,7 @@ const Feedback = () => {
             </div>
             
             <div className="form-floating w-100 my-3">
-               <textarea className="form-control" placeholder="Leave a comment here" id="floatingTextarea2" style={{height: "150px"}}></textarea>
+               <textarea onBlur={handleComment} className="form-control" placeholder="Leave a comment here" id="floatingTextarea2" style={{height: "150px"}}></textarea>
                <label for="floatingTextarea2">Comments</label>
             </div>
 

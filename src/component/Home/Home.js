@@ -1,8 +1,11 @@
 import React from 'react';
-import Banner from './Banner/Banner';
 import Header from './Header/Header';
-import Reviews from './Reviews/Reviews';
+import Banner from './Banner/Banner';
 import SpecialBoots from './SpecialBoots/SpecialBoots';
+import Reviews from './Reviews/Reviews';
+import Footer from '../Footer/Footer';
+import UpComing from '../UpComing/UpComing';
+
 
 const Home = () => {
    return (
@@ -11,6 +14,8 @@ const Home = () => {
          <Banner></Banner>
          <SpecialBoots></SpecialBoots>
          <Reviews></Reviews>
+         <UpComing></UpComing>
+         <Footer></Footer>
       </div>
    );
 };

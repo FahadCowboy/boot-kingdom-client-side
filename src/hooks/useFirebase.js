@@ -6,12 +6,31 @@ import { getAuth, GoogleAuthProvider, signInWithEmailAndPassword, createUserWith
 initializeFirebase()
 
 const useFirebase = () => {
-   const [user, setUser] = useState(null)
-   const [loader, setLoader] = useState(false)
+   const [user, setUser] = useState({})
+   const [loader, setLoader] = useState(true)
    const [errorMessage, setErrorMessage] = useState()
+   const [isAdmin, setIsAdmin] = useState(false)
 
    const auth = getAuth()
    const googleProvider = new GoogleAuthProvider()
+
+
+   const saveUserData = (displayName, email, method) => {
+      const user = {
+         displayName,
+         email
+      }
+      fetch('http://localhost:4000/users', {
+         method: method,
+         headers: {
+            "content-type": "application/json"
+         },
+         body: JSON.stringify(user)
+      })
+      .then(res => res.json())
+      .then(data => console.log(data))
+      .catch(err => console.log(err))
+   }
 
    // Register an user with email and password
    const registerUser = (name, email, password, history) => {
@@ -24,14 +43,17 @@ const useFirebase = () => {
             email,
             displayName: name
          }
+         saveUserData(name, email, 'POST')
          setUser(newUser)
          updateProfile(auth.currentUser, {
             displayName: name
-          }).then(() => {
+         })
+         .then(() => {
 
-          }).catch((error) => {
+         })
+         .catch((error) => {
             console.log(error)
-          });
+         });
          history.replace('/')
       })
       .catch((error) => {
@@ -69,6 +91,7 @@ const useFirebase = () => {
          const user = result.user;
          const destination = location?.state?.from || '/'
          history.replace(destination)
+         saveUserData(user.displayName, user.email, 'PUT')
          setUser(user)
        }).catch((error) => {
          const errorMessage = error.message;
@@ -91,11 +114,28 @@ const useFirebase = () => {
       return () => unsubscribe
    }, [])
 
+   // Check this user is admin or not
+   useEffect(() => {
+      // console.log(user.email)
+         fetch(`http://localhost:4000/users/${user?.email}`)
+         .then(res => res.json())
+         .then(data => {
+            console.log(data)
+            if(data?.role === 'admin') {
+               setIsAdmin(true)
+            }
+         })
+         .catch(error => console.log(error))
+   }, [user?.email])
+
    // Logout user
-   const logout = () => {
+   const logout = (location, history) => {
       setLoader(true)
-      signOut(auth).then(() => {
-         // Sign-out successful.
+      signOut(auth)
+      .then(() => {
+         setIsAdmin(false)
+         const destination = '/'
+         history.replace(destination)
       }).catch((error) => {
          // An error happened.
       })
@@ -104,6 +144,8 @@ const useFirebase = () => {
 
    return {
       user,
+      setUser,
+      isAdmin,
       errorMessage,
       loader,
       registerUser,
