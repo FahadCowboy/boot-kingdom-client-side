@@ -11,7 +11,7 @@ const Orders = () => {
    const [orders, setOrders] = useState([])
 
    useEffect(() => {
-      fetch(`http://localhost:4000/orders/${user.email}`)
+      fetch(`https://intense-citadel-64096.herokuapp.com/orders/${user.email}`)
       .then(res => res.json())
       .then(data => { 
          console.log(data)
@@ -25,7 +25,7 @@ const Orders = () => {
       const isAgreeToDelete = window.confirm('Are you agree to cancell this order?')
       if(isAgreeToDelete){
          console.log(id)
-         fetch(`http://localhost:4000/orders/${id}`, {
+         fetch(`https://intense-citadel-64096.herokuapp.com/orders/${id}`, {
             method: 'DELETE'
          })
          .then(res => res.json())
@@ -63,7 +63,7 @@ const Orders = () => {
                         <div className="ms-auto me-3 mb-3 d-flex justify-content-end align-items-center">
                            {
                               order.orderStatus === true ?
-                              <p className="m-0 me-3">Confirmed <FontAwesomeIcon className="text-info mt-2" icon={faCheckCircle}/>
+                              <p className="m-0 me-3">Shipped <FontAwesomeIcon className="text-info mt-2" icon={faCheckCircle}/>
                               </p>
                               :
                               <p className="m-0 me-2">Pending...</p>

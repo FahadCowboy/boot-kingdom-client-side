@@ -10,7 +10,7 @@ const MakeAdmin = () => {
    const handleSubmit = e => {
       e.preventDefault()
       const admin = { email }
-      fetch('http://localhost:4000/users/admin', {
+      fetch('https://intense-citadel-64096.herokuapp.com/users/admin', {
          method: 'PUT',
          headers: {
             'content-type': 'application/json'

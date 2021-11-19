@@ -10,7 +10,7 @@ const ManageOrders = () => {
 
 
    useEffect(() => {
-      fetch(`http://localhost:4000/orders`)
+      fetch(`https://intense-citadel-64096.herokuapp.com/orders`)
       .then(res => res.json())
       .then(data => setOrders(data))
    }, [])
@@ -22,7 +22,7 @@ const ManageOrders = () => {
    const handleOrderDelete = id => {
       const isAgreeToDelete = window.confirm('Are you agree to cancell this order?')
       if(isAgreeToDelete){
-         fetch(`http://localhost:4000/orders/${id}`, {
+         fetch(`https://intense-citadel-64096.herokuapp.com/orders/${id}`, {
             method: 'DELETE'
          })
          .then(res => res.json())
@@ -38,7 +38,7 @@ const ManageOrders = () => {
    const handleOrderConfirm = id => {
       const foundOrder = orders.find(order => order._id === id)
       foundOrder.orderStatus = true
-      fetch(`http://localhost:4000/orders/${id}`, {
+      fetch(`https://intense-citadel-64096.herokuapp.com/orders/${id}`, {
          method: 'PUT',
          headers: {
             "content-type": "application/json"
@@ -95,7 +95,7 @@ const ManageOrders = () => {
                         </div>
                         <div className="ms-auto me-3 mb-3 d-flex justify-content-end align-items-center">
                            { order.orderStatus === true?
-                              <p className="m-0 me-3">Confirmed <FontAwesomeIcon className="text-info mt-2" icon={faCheckCircle}/></p>
+                              <p className="m-0 me-3">Shipped <FontAwesomeIcon className="text-info mt-2" icon={faCheckCircle}/></p>
                               :
                               <button onClick={() => handleOrderConfirm(order._id)} type="button" className="btn btn-outline-info btn-sm fw-bold me-2">Confirm</button>
 

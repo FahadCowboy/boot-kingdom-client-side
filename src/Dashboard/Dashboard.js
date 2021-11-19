@@ -15,7 +15,7 @@ import ManageOrders from '../component/ManageOrders/ManageOrders';
 import Orders from '../component/Orders/Orders';
 import Feedback from '../Feedback/Feedback';
 import ManageProducts from '../component/ManageProducts/ManageProducts';
-import { useEffect } from 'react/cjs/react.development';
+import { useEffect } from 'react';
 import Pay from './Pay/Pay';
 
 const Dashboard = () => {
@@ -31,7 +31,7 @@ const Dashboard = () => {
 
 
    return (
-      <div>
+      <div className="">
          <DashboardHeader></DashboardHeader>
          <div className="container-fluid">
             <div className="row">

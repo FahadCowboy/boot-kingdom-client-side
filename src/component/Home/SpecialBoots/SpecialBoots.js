@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 const SpecialBoots = () => {
    const [boots, setBoots] = useState([])
    useEffect(() => {
-      fetch('http://localhost:4000/boots')
+      fetch('https://intense-citadel-64096.herokuapp.com/boots')
       .then(res => res.json())
       .then(data => {
          console.log(data)

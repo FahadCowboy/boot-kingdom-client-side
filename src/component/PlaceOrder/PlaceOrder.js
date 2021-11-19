@@ -14,7 +14,7 @@ const PlaceOrder = () => {
 
 console.log(name)
    useEffect(() => {
-      fetch(`http://localhost:4000/boots/${id}`)
+      fetch(`https://intense-citadel-64096.herokuapp.com/boots/${id}`)
       .then(res => res.json())
       .then(data => setBoot(data))
    }, [])
@@ -48,7 +48,7 @@ console.log(name)
          orderStatus: false
       }
       console.log(order)
-      fetch('http://localhost:4000/orders', {
+      fetch('https://intense-citadel-64096.herokuapp.com/orders', {
          method: 'POST',
          headers: {
             "content-type": "application/json"

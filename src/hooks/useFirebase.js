@@ -20,7 +20,7 @@ const useFirebase = () => {
          displayName,
          email
       }
-      fetch('http://localhost:4000/users', {
+      fetch('https://intense-citadel-64096.herokuapp.com/users', {
          method: method,
          headers: {
             "content-type": "application/json"
@@ -117,7 +117,7 @@ const useFirebase = () => {
    // Check this user is admin or not
    useEffect(() => {
       // console.log(user.email)
-         fetch(`http://localhost:4000/users/${user?.email}`)
+         fetch(`https://intense-citadel-64096.herokuapp.com/users/${user?.email}`)
          .then(res => res.json())
          .then(data => {
             console.log(data)

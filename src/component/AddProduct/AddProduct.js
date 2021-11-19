@@ -51,7 +51,7 @@ const AddProduct = () => {
 
       console.log(newProduct)
       
-      fetch('http://localhost:4000/boots', {
+      fetch('https://intense-citadel-64096.herokuapp.com/boots', {
          method: 'POST',
          headers: {
             'content-type': 'application/json'

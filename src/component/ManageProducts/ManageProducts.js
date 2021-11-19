@@ -6,7 +6,7 @@ const ManageProducts = () => {
    
    const [boots, setBoots] = useState([])
    useEffect(() => {
-      fetch('http://localhost:4000/boots')
+      fetch('https://intense-citadel-64096.herokuapp.com/boots')
       .then(res => res.json())
       .then(data => {
          console.log(data)
@@ -21,7 +21,7 @@ const ManageProducts = () => {
    const handleDeleteProduct = id => {
       const isAgreeToDelete = window.confirm('Are you agree to cancel this order?')
       if(isAgreeToDelete){
-         fetch(`http://localhost:4000/boots/${id}`, {
+         fetch(`https://intense-citadel-64096.herokuapp.com/boots/${id}`, {
             method: 'DELETE'
          })
          .then(res => res.json())

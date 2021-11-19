@@ -61,7 +61,7 @@ const Feedback = () => {
          ratting: currentValue
       }
       console.log(feedback)
-      fetch('http://localhost:4000/feedbacks',{
+      fetch('https://intense-citadel-64096.herokuapp.com/feedbacks',{
          method: 'POST',
          headers: {
             "content-type": "application/json"
