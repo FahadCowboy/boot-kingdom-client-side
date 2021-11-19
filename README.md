@@ -1,5 +1,7 @@
 # Getting Started with Boot Kingdom
 
+This website's UI is created with React and it's server is created with expressJs which is so much effecient.
+
 You can visit our site at [Boot Kinkdom](https://boot-kingdom.web.app/).
 
 ### `Home page`
