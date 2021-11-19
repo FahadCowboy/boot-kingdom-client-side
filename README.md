@@ -2,17 +2,13 @@
 
 You can visit our site at [Boot Kinkdom](https://boot-kingdom.web.app/).
 
-## Available Scripts
+### `Home page`
 
-In the project directory, you can run:
-
-### `npm start`
-
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
-
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+  * It has a header or navigation area top of the home page
+  * We have attached a banner just bellow the header area
+  * Tt displays six of the exclusive items on the home page
+  * Then we attached upcoming exclusive product just bellow the Exclusive item section
+  * Finally the web application contanes a footer at bottom of the Home page
 
 ### `npm test`
 
