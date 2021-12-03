@@ -20,7 +20,7 @@ const useFirebase = () => {
          displayName,
          email
       }
-      fetch('https://intense-citadel-64096.herokuapp.com/users', {
+      fetch('https://boot-kingdom.herokuapp.com/users', {
          method: method,
          headers: {
             "content-type": "application/json"
@@ -43,7 +43,10 @@ const useFirebase = () => {
             email,
             displayName: name
          }
+
+         // When a user will sign up, this function will be called to add a new user into the Database according to Sign up Data.
          saveUserData(name, email, 'POST')
+         
          setUser(newUser)
          updateProfile(auth.currentUser, {
             displayName: name
@@ -91,6 +94,7 @@ const useFirebase = () => {
          const user = result.user;
          const destination = location?.state?.from || '/'
          history.replace(destination)
+         // When a user will login via google, This function will be called and check that the user does exist in MongoDb database or not. If it does exist, it will not take any action. If the user doesn't exist into the Database, this will add a new user into the Database according to this user's Data.
          saveUserData(user.displayName, user.email, 'PUT')
          setUser(user)
        }).catch((error) => {
@@ -117,7 +121,7 @@ const useFirebase = () => {
    // Check this user is admin or not
    useEffect(() => {
       // console.log(user.email)
-         fetch(`https://intense-citadel-64096.herokuapp.com/users/${user?.email}`)
+         fetch(`https://boot-kingdom.herokuapp.com/users/${user?.email}`)
          .then(res => res.json())
          .then(data => {
             console.log(data)

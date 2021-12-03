@@ -61,7 +61,7 @@ const Feedback = () => {
          ratting: currentValue
       }
       console.log(feedback)
-      fetch('https://intense-citadel-64096.herokuapp.com/feedbacks',{
+      fetch('https://boot-kingdom.herokuapp.com/feedbacks',{
          method: 'POST',
          headers: {
             "content-type": "application/json"
@@ -76,9 +76,9 @@ const Feedback = () => {
    }
 
    return (
-      <div className="container d-flex justify-content-center align-items-center">
-         <form onSubmit={handleFeedback} style={styles.container}>
-            <h2> Share your experience </h2>
+      <div className="row justify-content-center">
+         <form className="col-12 col-lg-6" onSubmit={handleFeedback} style={styles.container}>
+            <h2 className="text-secondary">Share your experience</h2>
             <div className="mt-3" style={styles.stars}>
             {stars.map((_, index) => {
                return (

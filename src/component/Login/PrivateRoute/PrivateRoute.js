@@ -6,9 +6,12 @@ const PrivateRoute = ({ children, ...rest }) => {
    const {user, loader} = useAuth()
    if(loader){
      return(
-      <button className="btn btn-primary" type="button" disabled>
-         <span className="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>Loading...
-      </button>
+       <div className="d-flex justify-content-center align-items-center" style={{height: "100vh"}}>
+          <button className="btn" type="button" disabled>
+            <span className="spinner-border spinner-border-sm me-3" role="status" aria-hidden="true"></span>Loading...
+          </button>
+       </div>
+
      )
    }
    return (

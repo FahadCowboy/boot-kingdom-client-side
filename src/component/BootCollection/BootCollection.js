@@ -1,17 +1,26 @@
 import React, { useEffect, useState } from 'react';
-import { NavLink } from 'react-router-dom';
+import { Link } from 'react-router-dom';
+import BootDetails from '../BootDetails/BootDetails';
+import Footer from '../Footer/Footer';
 import Header from '../Home/Header/Header';
 
 const BootCollection = () => {
    const [boots, setBoots] = useState([])
+   const [boot, setBoot] = useState({})
    useEffect(() => {
-      fetch('https://intense-citadel-64096.herokuapp.com/boots')
+      fetch('https://boot-kingdom.herokuapp.com/boots')
       .then(res => res.json())
       .then(data => {
          console.log(data)
          setBoots(data)
       })
    }, [])
+
+   const handleDetailsModal = id => {
+      const filteredBoot = boots.find(boot => id === boot._id)
+      setBoot(filteredBoot)
+   }
+
    return (
       <div>
          <Header></Header>
@@ -22,18 +31,19 @@ const BootCollection = () => {
                   boots.map(boot => (
                      <div key={boot._id} className="col col-12 col-md-12 col-lg-4">
                         <div className="card h-100">
-                           <img src={boot.image} className="card-img-top d-block mx-auto w-75" alt="..."/>
+                           <div className="py-4">
+                              <img src={boot.image} className="card-img-top d-block mx-auto w-75" alt=""/>
+                           </div>
+                           
                            <div className="card-body">
                               <h4 className="card-title text-dark">{boot.name}</h4>
-                              <p>{boot.description}</p>
                               <h5 className="card-text text-secondary">{boot.price} <span>৳</span></h5>
                            </div>
-                           <div className="card-footer border-0 bg-transparent">
-                              <button className="btn btn-primary">View Details</button>
-                              <NavLink to={`/place-order/${boot._id}`}>
-                                 <button className="btn btn-outline-info ms-3">Grab it <span>+</span></button>
-                              </NavLink>
-                              
+                           <div className="d-flex justify-content-end card-footer border-0 bg-transparent pb-4">
+                              <button onClick={() => handleDetailsModal(boot._id)} className="btn btn-dark fw-bold"  data-bs-toggle="modal" data-bs-target="#exampleModal">View Details</button>
+                              <Link to={`/place-order/${boot._id}`}>
+                                 <button className="btn btn-outline-primary fw-bold ms-3">Grab it <span>+</span></button>
+                              </Link>
                            </div>
                         </div>
                      </div>
@@ -41,8 +51,11 @@ const BootCollection = () => {
                }
             </div>
          </div>
+         <Footer></Footer>
+         <BootDetails boot={boot}></BootDetails>
       </div>
    );
 };
+
 
 export default BootCollection;

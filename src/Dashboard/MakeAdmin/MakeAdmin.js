@@ -10,7 +10,7 @@ const MakeAdmin = () => {
    const handleSubmit = e => {
       e.preventDefault()
       const admin = { email }
-      fetch('https://intense-citadel-64096.herokuapp.com/users/admin', {
+      fetch('https://boot-kingdom.herokuapp.com/users/admin', {
          method: 'PUT',
          headers: {
             'content-type': 'application/json'
@@ -25,7 +25,7 @@ const MakeAdmin = () => {
    return ( 
       <div className="container d-flex justify-content-center align-items-center" style={{}}>
          <div>
-            <h2 className="text-center mb-4">Make someone admin</h2>
+            <h2 className="text-center mb-5 text-secondary">Make someone admin</h2>
             {/* {
                loader?
                <button className="btn btn-primary" type="button" disabled>
